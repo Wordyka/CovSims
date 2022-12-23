@@ -59,7 +59,7 @@ namespace CovSims
                 Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
                 //create a graph object 
                 Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            //create the graph content 
+                //create the graph content 
 
 
                 foreach (graph item in vertices)
@@ -124,14 +124,8 @@ namespace CovSims
                     }
                 }
 
-                //graph.AddEdge("A", "B");
-                //graph.AddEdge("B", "C");
-                //graph.AddEdge("A", "C").Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
                 graph.FindNode(root.ToString()).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Yellow;
-                //graph.FindNode("B").Attr.FillColor = Microsoft.Msagl.Drawing.Color.MistyRose;
-                //Microsoft.Msagl.Drawing.Node c = graph.FindNode("C");
-                //c.Attr.FillColor = Microsoft.Msagl.Drawing.Color.PaleGreen;
-                //c.Attr.Shape = Microsoft.Msagl.Drawing.Shape.Diamond;
+
                 //bind the graph to the viewer 
                 viewer.Graph = graph;
                 //associate the viewer with the form 

@@ -192,9 +192,6 @@
             // 
             this.bgGraph.WorkerReportsProgress = true;
             this.bgGraph.WorkerSupportsCancellation = true;
-            //this.bgGraph.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BgBFS_DoWork);
-            //this.bgGraph.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BgBFS_ProgressChanged);
-            //this.bgGraph.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BgBFS_RunWorkerCompleted);
             // 
             // Form1
             // 
