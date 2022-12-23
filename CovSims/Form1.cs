@@ -51,6 +51,7 @@ namespace CovSims
 
                 Dictionary<string,double> newNode = new Dictionary<string, double>();
                 Dictionary<string,long> listOfNode = new Dictionary<string, long>();
+                Dictionary<string,double> listOfDayOff = new Dictionary<string, double>();
 
 
                 //create a form 
@@ -72,37 +73,38 @@ namespace CovSims
 
           
 
-               
-
                 foreach (graph item in graphs)
                 {
+                    diffDay = day - startDay;
 
                     if (listOfNode.ContainsKey(item.NodeSrc.ToString()))
                     {
-                        diffDay = day - startDay;
                         long val = listOfNode[item.NodeSrc.ToString()];
                         double eq1 = Math.Pow(val - 1.0, -(0.25 * diffDay));
                         virus = val / (1 + eq1);
 
 
-
-                        dayOff = Math.Ceiling(1/(Convert.ToDouble(virus) * Convert.ToDouble(val)));
                         dayOff = Math.Ceiling((Math.Log(val*item.NodeValue)/Math.Log(val - 1))/0.25);
 
                         MessageBox.Show(String.Format("DAY OFF : {0}; Virus: {1}; Node Value : {2}; EQ1 : {3}; DiffDay : {4}", dayOff, virus, val, eq1, diffDay));
 
-                        startDay = Convert.ToInt64(dayOff);
+                        listOfDayOff.Add(item.NodeSrc.ToString()+item.NodeDest.ToString(), dayOff);
+
+                        startDay = 0;
 
                         if (virus > 1 && diffDay > 0)
                         {
                             if (item.NodeSrc.Equals(root))
                             {
                                 graph.AddEdge(item.NodeSrc.ToString(), item.NodeDest.ToString()).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
-                                  
+
                                 newNode.Add(item.NodeSrc.ToString()+item.NodeDest.ToString(), dayOff);
                             }
                             else
                             {
+
+                                startDay = Convert.ToInt64(listOfDayOff[item.NodeSrc.ToString()+item.NodeDest.ToString()]);
+
                                 if (newNode.ContainsKey(item.NodeSrc.ToString()+ item.NodeDest.ToString()))
                                 {
                                     graph.AddEdge(item.NodeSrc.ToString(), item.NodeDest.ToString()).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
@@ -117,6 +119,7 @@ namespace CovSims
                         }
                         else
                         {
+                            startDay = Convert.ToInt64(listOfDayOff[item.NodeSrc.ToString() + item.NodeDest.ToString()]);
                             graph.AddEdge(item.NodeSrc.ToString(), item.NodeDest.ToString());
                         }
     
