@@ -86,8 +86,6 @@ namespace CovSims
 
                         dayOff = Math.Ceiling((Math.Log(val*item.NodeValue)/Math.Log(val - 1))/0.25);
 
-                        MessageBox.Show(String.Format("DAY OFF : {0}; Virus: {1}; Node Value : {2}; EQ1 : {3}; DiffDay : {4}", dayOff, virus, val, eq1, diffDay));
-
                         listOfDayOff.Add(item.NodeSrc.ToString()+item.NodeDest.ToString(), dayOff);
 
                         startDay = 0;
